@@ -16,7 +16,7 @@
 -->
 
 
-{{if or .User .User.Admin}}
+{{if and .User .User.Admin}}
   You are an admin user!
 {{else}}
   Access denied!

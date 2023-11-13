@@ -29,6 +29,8 @@ func executeTemplate(text string, data interface{}) {
 	err = tmpl.Execute(os.Stdout, data)
 	check(err)
 }
+
+
 func main() {
 	_, err := os.Stdout.Write([]byte("hello\n"))
 	check(err)
