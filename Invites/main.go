@@ -46,14 +46,56 @@ func listHandler(w http.ResponseWriter, r *http.Request) {
 	templates["list"].Execute(w, responses)
 }
 
-// type formData struct {
-// 	*Rsvp
-// 	Errors []string
-// }
+type formData struct {
+	*Rsvp
+	Errors []string
+}
 
 // formHandler handles "/form" URL
-func formHandler(w http.ResponseWriter, r *http.Request) {
+func formHandler(w http.ResponseWriter, request *http.Request) {
 	// TODO
+	// Результат работы - пустая форма
+	// GET localhost/form 
+	// Взять данные формы(из request), проверить что данные не пустые и добавить очередное приглашение в список 
+	// POST localhost/form 
+	if request.Method == http.MethodGet {
+		templates["form"].Execute(w, formData{
+			Rsvp: &Rsvp{}, Errors: []string{},
+		})
+	} else if request.Method == http.MethodPost {
+		request.ParseForm() // Парсим данные из request'а и записываем в request.Form
+		responceData := Rsvp {
+			Name: request.FormValue("name"),
+			Email: request.Form["email"][0],  // the same as above
+			Phone: request.FormValue("phone"),
+			WillAttend: request.FormValue("willattend") == "true",
+		}
+
+		errors := []string{}
+		// Проверка значений полей формы. Пустые поля недопустимы.
+		if responceData.Name == "" {
+			errors = append(errors, "Please enter your name")
+		}
+		if responceData.Email == "" {
+			errors = append(errors, "Please enter your email")
+		}
+		if responceData.Phone == "" {
+			errors = append(errors, "Please enter your phone")
+		}
+		if len(errors) > 0{
+			templates["form"].Execute(w, formData{
+				Rsvp: &responceData, Errors: errors,
+			})
+		} else {
+			responses = append(responses, &responceData)
+			if responceData.WillAttend {
+				templates["thanks"].Execute(w, responceData.Name)
+			} else {
+				templates["sorry"].Execute(w, responceData.Name)
+			}
+		}
+	}
+
 }
 
 
