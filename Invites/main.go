@@ -26,7 +26,7 @@ func loadTemplates() {
 	// There are 5 templates: welcome.html, form.html, list.html, thanks.html, sorry.html
 	templateNames := [5]string{"welcome", "form", "list", "thanks", "sorry"}
 	for index, name := range templateNames {
-		t, err := template.ParseFiles("layout.html", name+"html")
+		t, err := template.ParseFiles("layout.html", name+".html")
 		if err == nil {
 			templates[name] = t
 			fmt.Println("Loaded template", index, name)
@@ -41,6 +41,7 @@ func welcomeHandler(w http.ResponseWriter, r *http.Request) {
 	templates["welcome"].Execute(w, nil)
 }
 
+// listHandler handles "/list" URL
 func listHandler(w http.ResponseWriter, r *http.Request) {
 	templates["list"].Execute(w, responses)
 }
@@ -50,6 +51,7 @@ func listHandler(w http.ResponseWriter, r *http.Request) {
 // 	Errors []string
 // }
 
+// formHandler handles "/form" URL
 func formHandler(w http.ResponseWriter, r *http.Request) {
 	// TODO
 }
