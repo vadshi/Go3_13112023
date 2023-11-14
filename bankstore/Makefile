@@ -1,0 +1,13 @@
+pg_start:
+	docker-compose start
+
+pg_stop:
+	docker-compose stop
+
+createdb:
+	docker-compose exec db createdb --username=postgres --owner=postgres bankstoredb
+
+dropdb:
+	docker-compose exec db dropdb -U postgres bankstoredb
+
+.PHONY: pg_start pg_stop createdb dropdb

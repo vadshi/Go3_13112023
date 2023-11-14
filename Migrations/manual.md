@@ -39,7 +39,7 @@ POSTGRES_USER=postgres
 ```
 
 
-`docker-compose.dev.yml` файл: 
+`docker-compose.yml` файл: 
 
 ```
 version: "3.1"
@@ -68,7 +68,7 @@ volumes:
 
 ## Запуск docker-compose
 ```
-docker compose -f docker-compose.dev.yml up
+docker compose -f docker-compose.yml up
 ```
 
 
@@ -87,7 +87,7 @@ docker ps
 ### Check database 
 ```
 # Docker compose command
-docker compose -f docker-compose.dev.yml exec db psql -U postgres -d postgres
+docker compose -f docker-compose.yml exec db psql -U postgres -d postgres
 
 # Check existing database
 postgres=# \l
@@ -141,11 +141,11 @@ migrate create -ext sql -dir db/migrations -seq create_table
 Запустите:
 ```
 # Command
-migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" up
+migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" -verbose up
 ```
 ### Check new table in DB
 ```
-docker compose -f docker-compose.dev.yml exec db psql -U postgres -d postgres
+docker-compose exec db psql -U postgres -d postgres
 ```
 ```
 postgres=# \c bankstoredb
