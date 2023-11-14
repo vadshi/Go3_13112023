@@ -138,7 +138,7 @@ migrate create -ext sql -dir db/migrations -seq create_table
 `migrate -database YOUR_DATABASE_URL -path PATH_TO_YOUR_MIGRATIONS up
 `  
 
-Запустите:
+Накатить миграцию:
 ```
 # Command
 migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" -verbose up
@@ -151,3 +151,12 @@ docker-compose exec db psql -U postgres -d postgres
 postgres=# \c bankstoredb
 ```
 
+Откатить миграцию:
+```
+# Command
+migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" -verbose up
+```
+
+# 4. CRUD
+
+[SQLC library](https://github.com/sqlc-dev/sqlc/blob/main/docs/overview/install.md)
