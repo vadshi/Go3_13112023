@@ -11,7 +11,7 @@
 Создать директорию и файл  
 
 - directory: `db/migrations`
-- file : `docker-compose.dev.yml`
+- file : `docker-compose.yml`
 
 
 
@@ -25,7 +25,7 @@ bankstore/
 ├── .env
 ├── db
 │   └── migrations/
-└── docker-compose.dev.yml
+└── docker-compose.yml
 ```
 
 
@@ -98,13 +98,9 @@ postgres=# \l
 ## Install golang-migrate cli
 
 ```
-curl -L https://github.com/golang-migrate/migrate/releases/download/v4.16.2/migrate.linux-amd64.tar.gz | tar xvz
+curl -L https://github.com/golang-migrate/migrate/releases/download/v4.16.2/migrate.linux-amd64.tar.gz | tar -C /home/${USER}/go/bin xvz
 ```
-
-*После распаковки можно скопировать или переместить в директорию ~/go/bin/*
-```
-cp ./migrate ~/go/bin/
-```
+*директория ~/go/bin/ должна быть добавлена в `PATH`*
 
 ## Create migration files
 
@@ -154,7 +150,7 @@ postgres=# \c bankstoredb
 Откатить миграцию:
 ```
 # Command
-migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" -verbose up
+migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" -verbose down
 ```
 
 # 4. CRUD

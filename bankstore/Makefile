@@ -16,5 +16,7 @@ migrateup:
 migratedown:
 	migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" down
 
+sqlc:
+	sqlc generate
 
-.PHONY: pg_start pg_stop createdb dropdb migrateup migratedown
+.PHONY: pg_start pg_stop createdb dropdb migrateup migratedown sqlc
