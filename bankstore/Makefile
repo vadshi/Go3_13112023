@@ -10,4 +10,11 @@ createdb:
 dropdb:
 	docker-compose exec db dropdb -U postgres bankstoredb
 
-.PHONY: pg_start pg_stop createdb dropdb
+migrateup:
+	migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" -verbose up
+
+migratedown:
+	migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" -verbose down
+
+
+.PHONY: pg_start pg_stop createdb dropdb migrateup migratedown
