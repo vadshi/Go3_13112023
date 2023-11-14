@@ -2,7 +2,9 @@
 
 **How To Install and Use Docker Compose on Ubuntu 22.04**
 
-[Manual link](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-22-04)
+[Docker install manual](https://docs.docker.com/engine/install/ubuntu/)  
+
+[Docker compose install manual](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-22-04)
 
 # 2. Start
 
