@@ -22,12 +22,22 @@ bankstore/
 ❯ tree   
 .
 ├── Makefile
+├── .env
 ├── db
 │   └── migrations/
 └── docker-compose.dev.yml
 ```
 
+
+
 ## Запуск Postgres DB используя docker-compose
+
+`.env` файл: 
+
+```
+POSTGRES_USER=postgres
+```
+
 
 `docker-compose.dev.yml` файл: 
 
@@ -67,6 +77,12 @@ docker compose -f docker-compose.dev.yml up
 ```
 docker ps
 ```
+
+*Если возникнет ошибка доступа к сокету:*
+- [либо добавить текущего пользователя в группу docker](https://www.digitalocean.com/community/questions/how-to-fix-docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket)
+- либо изменить права доступа `sudo chmod 666 /var/run/docker.sock`
+- либо добавить `sudo` вначале каждой команды
+
 
 ### Check database 
 ```
