@@ -4,4 +4,5 @@ use (
 	./Invites
 	./Templates/templatesHTML
 	./Templates/templatesText
+	./bankstore
 )
