@@ -101,6 +101,11 @@ postgres=# \l
 curl -L https://github.com/golang-migrate/migrate/releases/download/v4.16.2/migrate.linux-amd64.tar.gz | tar xvz
 ```
 
+*После распаковки можно скопировать или переместить в директорию ~/go/bin/*
+```
+cp ./migrate ~/go/bin/
+```
+
 ## Create migration files
 
 *Шаблон:*  
@@ -120,6 +125,10 @@ migrate create -ext sql -dir db/migrations -seq create_table
 {version}_{title}.up.{extension}
 {version}_{title}.down.{extension}
 ```
+
+### Create SQL
+
+[dbdiagram.io ](https://dbdiagram.io/home)
 
 ### Run migration
 
