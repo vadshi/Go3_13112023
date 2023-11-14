@@ -130,6 +130,8 @@ migrate create -ext sql -dir db/migrations -seq create_table
 
 [dbdiagram.io ](https://dbdiagram.io/home)
 
+[Database] (https://dbdiagram.io/d/Bankstore-655347b97d8bbd646525b57e)
+
 ### Run migration
 
 Шаблон:  
