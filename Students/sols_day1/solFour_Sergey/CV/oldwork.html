@@ -1,0 +1,18 @@
+{{ define "body" }}
+
+   <div class="text-center">
+        <h3>Резюме</h3>
+   </div>
+   <div class="text-center">
+      <h5>Опыт работы:</h5>
+   </div>
+   <div>
+      {{ range . }}
+      <li>
+        {{ .Name }} {{ .Post }} {{ .Years }} лет
+      </li>
+      {{ end }}
+   </div>
+   <a href="/">На главную</a>
+   
+{{ end }}

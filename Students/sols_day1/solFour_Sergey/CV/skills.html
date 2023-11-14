@@ -1,0 +1,17 @@
+{{ define "body" }}
+
+   <div class="text-center">
+        <h3>Резюме</h3>
+   </div>
+   <div class="text-center">
+      <h5>Основные знания, умения и навыки:</h5>
+   </div>
+   <div>
+      {{ range . }}
+      <li>
+        {{ . }}
+      </li>
+      {{ end }}
+   </div>
+   <a href="/">На главную</a>
+{{ end }}

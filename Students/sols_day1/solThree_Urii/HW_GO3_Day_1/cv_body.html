@@ -1,0 +1,72 @@
+{{define "body"}}
+
+    <div class="container">
+        <h1> Резюме </h1>
+
+        <p> На позицию: {{ .Position }}
+
+        <header class="my-4">
+            <h1>{{.Name}} {{.LastName}}</h1>
+            <p>Email: {{.Email}}</p>
+            <p>Phone: {{.Phone}}</p>
+        </header>
+
+        <section>
+            <h2>Опыт работы</h2>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Компания</th>
+                        <th>Позиция и Даты</th>
+                        <th>Обязанности</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .Experience}}
+                        <tr>
+                            <td>{{.Company}}</td>
+                            <td>
+                                {{.Position}}<br>
+                                {{.Begin}} - {{.End}}
+                            </td>
+                            <td>{{.Function}}</td>
+                        </tr>
+                    {{end}}
+                </tbody>
+            </table>
+
+
+        </section>
+
+        <br>
+        <section>
+
+            <h2>Образование</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Институт</th>
+                        <th>Специальность</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .Education}}
+                        <tr>
+                            <td>{{.Name_education}}</td>
+                            <td>{{.Specialty}}</td>
+                        </tr>
+                    {{end}}
+                </tbody>
+            </table>
+
+        </section>
+        <br>
+
+        <section>
+            <h2>Навыки</h2>
+            <!-- Добавьте здесь блоки с навыками -->
+        </section>
+    </div>
+
+{{end}}
