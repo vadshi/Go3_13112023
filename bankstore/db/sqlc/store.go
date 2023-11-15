@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 
-	// "github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
@@ -22,6 +21,7 @@ func NewStore(db *pgxpool.Pool) *Store {
 }
 
 func (store *Store) execTx(ctx context.Context, fn func(*Queries) error) error {
+
 	conn, err := store.db.Acquire(ctx)
 	if err != nil {
 		return err
@@ -62,27 +62,27 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams) (Trans
 		var err error
 		result.Transfer, err = q.CreateTransfer(ctx, CreateTransferParams{
 			FromAccountID: arg.FromAccountID,
-			ToAccountID: arg.ToAccountID,
-			Amount: arg.Amount,
+			ToAccountID:   arg.ToAccountID,
+			Amount:        arg.Amount,
 		})
-		if err != nil{
+		if err != nil {
 			return err
 		}
 
-		// Step 2. Create two Entry records 
+		// Step 2. Create two Entry records
 		result.FromEntry, err = q.CreateEntry(ctx, CreateEntryParams{
 			AccountID: arg.FromAccountID,
-			Amount: -arg.Amount,
+			Amount:    -arg.Amount,
 		})
-		if err != nil{
+		if err != nil {
 			return err
 		}
 
 		result.ToEntry, err = q.CreateEntry(ctx, CreateEntryParams{
 			AccountID: arg.ToAccountID,
-			Amount: arg.Amount,
+			Amount:    arg.Amount,
 		})
-		if err != nil{
+		if err != nil {
 			return err
 		}
 
