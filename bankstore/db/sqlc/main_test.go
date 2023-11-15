@@ -2,7 +2,6 @@ package db
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 	"testing"
@@ -23,12 +22,7 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		log.Fatal("Can not connect to db", err)
 	}
-	conn, err := testDB.Acquire(context.Background())
-	if err != nil {
-		log.Fatal("Can not connect to db", err)
-	}
-	fmt.Printf("%v\n", conn)
-	
+
 	defer testDB.Close()
 
 	testQueries = New(testDB)
