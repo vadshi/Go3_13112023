@@ -19,4 +19,7 @@ migratedown:
 sqlc:
 	sqlc generate
 
-.PHONY: pg_start pg_stop createdb dropdb migrateup migratedown sqlc
+test:
+	go test -v -cover ./...
+
+.PHONY: pg_start pg_stop createdb dropdb migrateup migratedown sqlc test

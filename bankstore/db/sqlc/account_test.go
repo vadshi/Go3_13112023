@@ -8,14 +8,16 @@ import (
 	"log"
 	"os"
 	"testing"
+
 	"github.com/jackc/pgx/v5"
 	"github.com/stretchr/testify/require"
+	"github.com/vadshi/go3/bankstore/util"
 )
 
 const (
-	dbDriver = "postgres"
 	dbSource = "postgresql://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable"
 )
+
 var ctx = context.Background()
 
 var testQueries *Queries
@@ -34,13 +36,23 @@ func TestMain(m *testing.M) {
 
 func TestCreateAccount(t *testing.T) {
 	arg := CreateAccountParams{
-		Owner : "Petr",
-		Balance: 100,
-		Currency: "USD",
+		Owner:    util.RandomOwner(),
+		Balance:  util.RandomAmount(),
+		Currency: Currency(util.RandomCurrency()),
 	}
 	account, err := testQueries.CreateAccount(ctx, arg)
 
 	require.NoError(t, err)
 	require.NotEmpty(t, account)
 
+	require.Equal(t, arg.Owner, account.Owner)
+	require.Equal(t, arg.Balance, account.Balance)
+	require.Equal(t, arg.Currency, account.Currency)
+
+	require.NotZero(t, account.ID)
+	require.NotZero(t, account.CreatedAt)
+}
+
+func TestGetAccount(t *testing.T){
+	
 }
