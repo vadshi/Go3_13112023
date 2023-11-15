@@ -3,7 +3,6 @@ module github.com/vadshi/go3/bankstore
 go 1.21.4
 
 require (
-	github.com/go-faker/faker/v4 v4.2.0
 	github.com/jackc/pgx/v5 v5.5.0
 	github.com/stretchr/testify v1.8.1
 )
