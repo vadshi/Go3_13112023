@@ -11,7 +11,7 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
-type Currency string
+type Currency string 
 
 const (
 	CurrencyUSD Currency = "USD"
