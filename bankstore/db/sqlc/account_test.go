@@ -8,8 +8,8 @@ import (
 	"log"
 	"os"
 	"testing"
-
 	"github.com/jackc/pgx/v5"
+	"github.com/stretchr/testify/require"
 )
 
 const (
@@ -26,12 +26,21 @@ func TestMain(m *testing.M) {
 		log.Fatal("Can not connect to db", err)
 	}
 	defer conn.Close(ctx)
-	
+
 	testQueries = New(conn)
 
 	os.Exit(m.Run())
 }
 
-// func TestCreateAccount(t *testing.T) {
-// 	fmt.Println("Run test")
-// }
+func TestCreateAccount(t *testing.T) {
+	arg := CreateAccountParams{
+		Owner : "Petr",
+		Balance: 100,
+		Currency: "USD",
+	}
+	account, err := testQueries.CreateAccount(ctx, arg)
+
+	require.NoError(t, err)
+	require.NotEmpty(t, account)
+
+}
