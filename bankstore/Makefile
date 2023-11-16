@@ -22,4 +22,7 @@ sqlc:
 test:
 	go test -timeout 180s -v -cover ./... -count=1
 
-.PHONY: pg_start pg_stop createdb dropdb migrateup migratedown sqlc test
+server:
+	go run main.go
+
+.PHONY: pg_start pg_stop createdb dropdb migrateup migratedown sqlc test server
