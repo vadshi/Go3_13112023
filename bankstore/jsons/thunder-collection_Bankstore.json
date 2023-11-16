@@ -1,0 +1,42 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Bankstore",
+    "dateExported": "2023-11-16T13:18:30.905Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b7ced95e-0eb8-435b-a1fa-57df5be2ced4",
+            "colId": "21ef5fcf-d0a4-4e88-9590-8f5983bd4efa",
+            "containerId": "",
+            "name": "Create account",
+            "url": "{{host}}{{port}}/accounts",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-11-16T12:17:38.225Z",
+            "modified": "2023-11-16T13:18:06.099Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"owner\": \"Petr Ivanov\",\n  \"currency\": \"EUR\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8723743f-fdf2-47bf-a90a-b3c8d5b006aa",
+            "colId": "21ef5fcf-d0a4-4e88-9590-8f5983bd4efa",
+            "containerId": "",
+            "name": "Get account by id",
+            "url": "{{host}}{{port}}/accounts/5",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-11-16T13:07:16.813Z",
+            "modified": "2023-11-16T13:16:33.150Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
