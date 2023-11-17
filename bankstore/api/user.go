@@ -14,7 +14,7 @@ import (
 
 type createUserRequest struct {
 	Username string `json:"username" binding:"required,alphanum"`
-	Password string `json:"password" binding:"required,min=6"`
+	Password string `json:"password" binding:"required"`
 	Fullname string `json:"full_name" binding:"required"`
 	Email    string `json:"email" binding:"required,email"`
 }
@@ -29,7 +29,7 @@ type userResponse struct {
 
 type loginUserRequest struct {
 	Username string `json:"username" binding:"required,alphanum"`
-	Password string `json:"password" binding:"required,min=6"`
+	Password string `json:"password" binding:"required"`
 }
 
 type loginUserResponse struct {
@@ -108,7 +108,7 @@ func (server *Server) loginUser(ctx *gin.Context) {
 		user.Username,
 		server.config.AccessTokenDuration,
 	)
-	if err != nil{
+	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
