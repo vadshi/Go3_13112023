@@ -16,11 +16,17 @@ createdb:
 dropdb:
 	docker-compose exec db dropdb -U postgres bankstoredb
 
+migrateup1:
+	migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" up 1
+
 migrateup:
 	migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" up
 
 migratedown:
 	migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" down
+
+migratedown1:
+	migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/bankstoredb?sslmode=disable" down 1
 
 sqlc:
 	sqlc generate
