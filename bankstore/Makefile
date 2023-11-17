@@ -1,3 +1,9 @@
+pg_up:
+	docker-compose up -d
+
+pg_down:
+	docker-compose down
+
 pg_start:
 	docker-compose start
 
@@ -25,4 +31,4 @@ test:
 server:
 	go run main.go
 
-.PHONY: pg_start pg_stop createdb dropdb migrateup migratedown sqlc test server
+.PHONY: pg_start pg_stop createdb dropdb migrateup migratedown sqlc test server pg_up pg_down
