@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>График</title>
+<style>
+/* Width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+		background-color: transparent;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+		background: rgba(0,45,68,.1);
+    border-radius: 5px;
+}
+ 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,45,68,.4);
+}
+</style>
+</head>
+<body>
+
+<!-- Card modal -->
+<div class="hidden" id="card-modal">
+</div>
+
+{{template "cards_list" .}}
+
+<script src="https://unpkg.com/htmx.org@1.9.8" integrity="sha384-rgjA7mptc2ETQqXoYC3/zJvkU7K/aP44Y+z7xQuJiVnB/422P/Ak+F/AqFR7E4Wr" crossorigin="anonymous"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="text/javascript">
+  function toggleModal(modalID){
+    document.getElementById(modalID).classList.toggle("hidden");
+    document.getElementById(modalID).classList.toggle("flex");
+  }
+</script>
+</body>
+</html>
+
+

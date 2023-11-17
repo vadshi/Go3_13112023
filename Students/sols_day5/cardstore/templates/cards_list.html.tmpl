@@ -1,0 +1,60 @@
+{{define "cards_list"}}
+
+<div id=card-list class="flex flex-col w-screen h-screen overflow-auto text-gray-700 bg-gradient-to-tr from-blue-200 via-indigo-200 to-pink-200">
+
+{{$cards := .Cards }}
+{{$dates := .Dates }}
+{{$count := len (slice (printf "%*s" (len $dates) "") 1)}}
+
+	<div class="px-10 mt-6">
+	<button hx-get="?page={{.Prev}}" hx-target="#card-list" hx-swap="outerHTML" 
+		class="text-indigo-300 bg-indigo-100 w-6 h-6 mr-3 rounded">
+		<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 60 100" stroke="none">
+			<path
+				d="M67.36 93.98L23.42 49.99L67.39 6.02L76.58 15.21L41.8 50L76.56 84.79L67.36 93.98z"	
+			></path>
+		</svg>
+	</button>
+		<!-- https://stackoverflow.com/a/72465098 -->	
+		<span class="text-2xl font-semibold">{{index $dates 0}} — {{index $dates $count}} </h1>
+		<button hx-get="?page={{.Next}}" hx-target="#card-list" hx-swap="outerHTML" 
+		class="text-indigo-300 bg-indigo-100 w-6 h-6 ml-3 rounded">
+		<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 45 100" stroke="none">
+			<path
+				d="M32.64 6.02L76.58 50.01L32.61 93.98L23.42 84.79L58.2 50L23.45 15.21L32.64 6.02z"
+				></path>
+		</svg>
+	</button>
+	</div>
+
+	<div class="flex flex-grow px-10 mt-4 space-x-6 overflow-auto">
+
+{{range $date := $dates}}
+		<div class="flex flex-col flex-shrink-0 w-72">
+			<div class="flex items-center flex-shrink-0 h-10 px-2 mb-3">
+				<span class="block text-sm font-semibold">{{$date}}</span>
+	<!-- <span class="flex items-center justify-center w-20 h-6 ml-auto text-sm font-semibold text-grey-500 bg-white rounded bg-opacity-30">Сегодня</span> -->
+			</div>
+			<div class="flex flex-col pb-2 overflow-auto">
+			
+			{{range $card := $cards}}
+				{{if (eq $card.Date $date)}}
+					{{if (eq $card.Title "")}}
+						{{template "card_empty" .}}
+					{{else}}
+						{{template "card" $card }}
+					{{end}}
+				{{end}} 
+      {{end}}
+
+			</div>
+		</div>
+{{end}}
+
+		<div class="flex-shrink-0 w-6"></div>
+	</div>
+
+
+</div>
+
+{{end}}
