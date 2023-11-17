@@ -3,7 +3,10 @@ module github.com/vadshi/go3/bankstore
 go 1.21.4
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.9.1
+	github.com/golang-jwt/jwt/v5 v5.1.0
+	github.com/google/uuid v1.1.2
 	github.com/jackc/pgx/v5 v5.5.0
 	github.com/spf13/viper v1.17.0
 	github.com/stretchr/testify v1.8.4
